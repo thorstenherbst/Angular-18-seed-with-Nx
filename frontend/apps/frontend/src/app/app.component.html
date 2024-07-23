@@ -1,1 +1,16 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<router-outlet></router-outlet>
+<ng-container *ngIf="board">
+
+<div class="container row" *ngFor="let row of board(); let x = index">
+    <div *ngFor="let column of row; let y = index">
+        <app-item
+                [xPoint]="x"
+                [yPoint]="y"
+                (cellClicked)="cellClicked($event)"
+                [state]="column"
+        >
+        </app-item>
+    </div>
+</div>
+</ng-container>
+<button (click)="newGame()"> new Game </button>
