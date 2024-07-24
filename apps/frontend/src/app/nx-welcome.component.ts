@@ -429,7 +429,7 @@ import { CommonModule } from '@angular/common';
     <div class="wrapper">
       <div class="container">
         <!--  WELCOME  -->
-        <div id="welcome">
+        <div id="welcome" data-qa="headline">
           <h1>
             <span> Hello there, </span>
             Welcome frontend 👋
