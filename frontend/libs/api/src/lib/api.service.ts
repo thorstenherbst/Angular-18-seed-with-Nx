@@ -8,8 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 export class ApiService {
   mockBackend: MockBackendService = inject(MockBackendService);
 
-  changeGameStatus(row: number, column: number, userSelectedState: string): Signal<Board> {
-    return this.mockBackend.cellClicked(row, column,userSelectedState);
+  changeGameStatus(board: Board, row: number, column: number, userSelectedState: string): Signal<Board> {
+    return this.mockBackend.cellClicked(board, row, column,userSelectedState);
   }
 
   newGame(): Signal<Board> {

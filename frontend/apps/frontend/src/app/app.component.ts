@@ -19,16 +19,18 @@ export class AppComponent implements OnInit {
 
   title = 'frontend';
   cellClicked(ev: {x: number, y: number}): void {
+    const board = this.board();
+    if(!board) throw new Error('Can not find board, please try to start a new game!');
     const {x, y} = ev;
-    this.board = this.service.changeGameStatus(x, y, 'X');
-
+    this.board = this.service.changeGameStatus(board, x, y, 'X');
   }
+
   ngOnInit(){
-    this.newGame()
+    this.newGame();
   }
-  newGame(){
-    this.board = this.service.newGame()
 
+  newGame(){
+    this.board = this.service.newGame();
   }
 }
 
