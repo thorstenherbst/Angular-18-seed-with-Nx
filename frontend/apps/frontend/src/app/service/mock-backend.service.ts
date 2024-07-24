@@ -120,9 +120,10 @@ export class MockBackendService{
   }
 
   checkAvailability(x: number, y: number, player: string){
+    if(player !== 'X') return alert('Please start new game');
     if (this.board[ x ][ y ] !== '') return alert('Already occupied');
     this.board[ x ][ y ] = player;
-    if (this.won()) return alert(this.won());
+    if (this.won()) return alert(this.won() !== 'draw' ? this.won() + ' Wins !!!': 'Draw !!');
     this.makeKIMove();
   }
 
@@ -146,6 +147,6 @@ export class MockBackendService{
       const [x, y]         = this.getWinningPoint('X')!;
       this.board[ x ][ y ] = 'O';
     }
-    if (this.won()) return alert(this.won());
+    if (this.won()) return alert(this.won() !== 'draw' ? this.won() + ' Wins !!!': 'Draw !!');
   }
 }
