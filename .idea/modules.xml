@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/sheep_ai.iml" filepath="$PROJECT_DIR$/.idea/sheep_ai.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Angular-18-seed-with-Nx.iml" filepath="$PROJECT_DIR$/.idea/Angular-18-seed-with-Nx.iml" />
     </modules>
   </component>
 </project>
