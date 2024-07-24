@@ -27,7 +27,6 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "postinstall": "ngcc",
     "lint-strict": "nx run-many --target=lint --all --maxWarnings=0",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
@@ -47,7 +46,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "18.0.2",
+    "@angular-devkit/build-angular": "^18.1.1",
     "@angular-devkit/core": "18.0.2",
     "@angular-devkit/schematics": "18.0.2",
     "@angular-eslint/eslint-plugin": "18.0.1",
