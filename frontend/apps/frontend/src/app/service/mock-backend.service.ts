@@ -14,9 +14,9 @@ export class MockBackendService{
 
   constructor(){ }
 
-  cellClicked(x: number, y: number, player: string): Signal<Board>{
-    this.checkAvailability(x, y, player);
-    return signal(JSON.parse(JSON.stringify(this.board)));
+  cellClicked(board: Board, x: number, y: number, player: string): Signal<Board>{
+    this.checkAvailability(board, x, y, player);
+    return signal(JSON.parse(JSON.stringify(board)));
   }
 
   get newGame(): Signal<Board>{
@@ -28,55 +28,55 @@ export class MockBackendService{
     return signal(JSON.parse(JSON.stringify(this.board)));
   }
 
-  won(): string | undefined{
+  won(board: Board): string | undefined{
     // Checking rows
     for (let i = 0; i < 3; i++) {
-      const a = this.board[ i ][ 0 ];
-      const b = this.board[ i ][ 1 ];
-      const c = this.board[ i ][ 2 ];
+      const a = board[ i ][ 0 ];
+      const b = board[ i ][ 1 ];
+      const c = board[ i ][ 2 ];
       if (a != '' && a === b && b === c) {
         return a;
       }
     }
     // Checking columns
     for (let i = 0; i < 3; i++) {
-      const a = this.board[ 0 ][ i ];
-      const b = this.board[ 1 ][ i ];
-      const c = this.board[ 2 ][ i ];
+      const a = board[ 0 ][ i ];
+      const b = board[ 1 ][ i ];
+      const c = board[ 2 ][ i ];
       if (a != '' && a === b && b === c) {
         return a;
       }
     }
     // Left Top to Bottom right diagonal
-    const a = this.board[ 0 ][ 0 ];
-    const b = this.board[ 1 ][ 1 ];
-    const c = this.board[ 2 ][ 2 ];
+    const a = board[ 0 ][ 0 ];
+    const b = board[ 1 ][ 1 ];
+    const c = board[ 2 ][ 2 ];
     if (a != '' && a === b && b === c) {
       return a;
     }
     // Right Top to Left bottom diagonal
-    const d = this.board[ 0 ][ 2 ];
-    const e = this.board[ 1 ][ 1 ];
-    const f = this.board[ 2 ][ 0 ];
+    const d = board[ 0 ][ 2 ];
+    const e = board[ 1 ][ 1 ];
+    const f = board[ 2 ][ 0 ];
     if (d != '' && d === e && e === f) {
       return d;
     }
     // Check for draw
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
-        const square = this.board[ i ][ j ];
+        const square = board[ i ][ j ];
         if (square === '') return undefined;
       }
     }
     return 'draw';
   }
 
-  getWinningPoint(player: string): number[] | undefined{
+  getWinningPoint(board: Board, player: string): number[] | undefined {
     // Checking rows
     for (let i = 0; i < 3; i++) {
-      const a = this.board[ i ][ 0 ];
-      const b = this.board[ i ][ 1 ];
-      const c = this.board[ i ][ 2 ];
+      const a = board[ i ][ 0 ];
+      const b = board[ i ][ 1 ];
+      const c = board[ i ][ 2 ];
       if (a === player && a === b && c === '') {
         return [i, 2];
       }
@@ -86,9 +86,9 @@ export class MockBackendService{
     }
     // Checking columns
     for (let i = 0; i < 3; i++) {
-      const a = this.board[ 0 ][ i ];
-      const b = this.board[ 1 ][ i ];
-      const c = this.board[ 2 ][ i ];
+      const a = board[ 0 ][ i ];
+      const b = board[ 1 ][ i ];
+      const c = board[ 2 ][ i ];
       if (a === player && a === b && c === '') {
         return [2, i];
       }
@@ -97,9 +97,9 @@ export class MockBackendService{
       }
     }
     // Left Top to Bottom right diagonal
-    const a = this.board[ 0 ][ 0 ];
-    const b = this.board[ 1 ][ 1 ];
-    const c = this.board[ 2 ][ 2 ];
+    const a = board[ 0 ][ 0 ];
+    const b = board[ 1 ][ 1 ];
+    const c = board[ 2 ][ 2 ];
     if (a === player && a === b && c === '') {
       return [2, 2];
     }
@@ -107,9 +107,9 @@ export class MockBackendService{
       return [0, 0];
     }
     // Right Top to Left bottom diagonal
-    const d = this.board[ 0 ][ 2 ];
-    const e = this.board[ 1 ][ 1 ];
-    const f = this.board[ 2 ][ 0 ];
+    const d = board[ 0 ][ 2 ];
+    const e = board[ 1 ][ 1 ];
+    const f = board[ 2 ][ 0 ];
     if (d === player && d === e && f === '') {
       return [2, 0];
     }
@@ -119,34 +119,34 @@ export class MockBackendService{
     return undefined
   }
 
-  checkAvailability(x: number, y: number, player: string){
+  checkAvailability(board: Board, x: number, y: number, player: string){
     if(player !== 'X') return alert('Please start new game');
-    if (this.board[ x ][ y ] !== '') return alert('Already occupied');
-    this.board[ x ][ y ] = player;
-    if (this.won()) return alert(this.won() !== 'draw' ? this.won() + ' Wins !!!': 'Draw !!');
-    this.makeKIMove();
+    if(board[ x ][ y ] !== '') return alert('Already occupied');
+    board[ x ][ y ] = player;
+    if (this.won(board)) return alert(this.won(board) !== 'draw' ? this.won(board) + ' Wins !!!': 'Draw !!');
+    this.makeKIMove(board);
   }
 
-  getRandPoint(): number[]{
+  getRandPoint(board: Board): number[]{
     const y = Math.floor(Math.random()*3);
     const x = Math.floor(Math.random()*3);
-    if (this.board[ y ][ x ] === '') {
-      return [x, y]
+    if(board[ y ][ x ] === '') {
+      return [x, y];
     }
-    return this.getRandPoint();
+    return this.getRandPoint(board);
   }
 
-  makeKIMove(){
-    if (this.getWinningPoint('O')) {
-      const [x, y]         = this.getWinningPoint('O')!;
-      this.board[ x ][ y ] = 'O';
-    } else if (!this.getWinningPoint('X')) {
-      const [x, y]         = this.getRandPoint();
-      this.board[ x ][ y ] = 'O';
+  makeKIMove(board: Board){
+    if (this.getWinningPoint(board,'O')) {
+      const [x, y]         = this.getWinningPoint(board,'O')!;
+      board[ x ][ y ] = 'O';
+    } else if (!this.getWinningPoint(board,'X')) {
+      const [x, y]         = this.getRandPoint(board);
+      board[ x ][ y ] = 'O';
     } else {
-      const [x, y]         = this.getWinningPoint('X')!;
-      this.board[ x ][ y ] = 'O';
+      const [x, y]         = this.getWinningPoint(board,'X')!;
+      board[ x ][ y ] = 'O';
     }
-    if (this.won()) return alert(this.won() !== 'draw' ? this.won() + ' Wins !!!': 'Draw !!');
+    if (this.won(board)) return alert(this.won(board) !== 'draw' ? this.won(board) + ' Wins !!!': 'Draw !!');
   }
 }
