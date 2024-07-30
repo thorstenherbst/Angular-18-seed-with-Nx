@@ -1,4 +1,21 @@
-# Frontend
+# Angular 18 Seed with Nx Workspace Monorepo
+
+This is an Angular 18 Seed with Nx 19. 
+I created this Seed to make developers work easier.
+Feel free to use it for your work.
+
+The seed contains an Nx Monorepo with 2 apps:
+
+* frontend
+* frontend-e2e 
+* e2e cypress library
+* api lib (star wars api) 
+
+##### In addition i created a small tic tac toe game which was part of a candidate test. You can find it in the branch feature/tttgame.
+
+I am happy to see a shou tout (referal to my github profile).
+
+## Integration of Nx
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
