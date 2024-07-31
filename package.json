@@ -5,6 +5,8 @@
   "scripts": {
     "nx": "nx",
     "start": "nx serve",
+    "start:frontend": "./node_modules/.bin/nx serve",
+    "start:tttgame": "./node_modules/.bin/nx serve --project=tttgame",
     "build": "./node_modules/.bin/nx build --configuration=production --progress=false",
     "build:gitlab": "./node_modules/.bin/nx affected:build --configuration=production --progress=false",
     "test": "nx test",

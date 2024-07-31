@@ -11,6 +11,7 @@ export class MockBackendService{
     ['', '', ''],
     ['', '', ''],
   ];
+  private gameEnd: string | undefined =  undefined;
 
   constructor(){ }
 
@@ -25,6 +26,7 @@ export class MockBackendService{
       ['', '', ''],
       ['', '', ''],
     ];
+    this.gameEnd = undefined;
     return signal(JSON.parse(JSON.stringify(this.board)));
   }
 
@@ -35,7 +37,8 @@ export class MockBackendService{
       const b = board[ i ][ 1 ];
       const c = board[ i ][ 2 ];
       if (a != '' && a === b && b === c) {
-        return a;
+        this.gameEnd = a;
+        return this.gameEnd;
       }
     }
     // Checking columns
@@ -44,7 +47,8 @@ export class MockBackendService{
       const b = board[ 1 ][ i ];
       const c = board[ 2 ][ i ];
       if (a != '' && a === b && b === c) {
-        return a;
+        this.gameEnd = a;
+        return this.gameEnd;
       }
     }
     // Left Top to Bottom right diagonal
@@ -52,7 +56,8 @@ export class MockBackendService{
     const b = board[ 1 ][ 1 ];
     const c = board[ 2 ][ 2 ];
     if (a != '' && a === b && b === c) {
-      return a;
+      this.gameEnd = a;
+      return this.gameEnd;
     }
     // Right Top to Left bottom diagonal
     const d = board[ 0 ][ 2 ];
@@ -120,7 +125,7 @@ export class MockBackendService{
   }
 
   checkAvailability(board: Board, x: number, y: number, player: string){
-    if(player !== 'X') return alert('Please start new game');
+    if(player !== 'X' || this.gameEnd !== undefined) return alert('Please start new game');
     if(board[ x ][ y ] !== '') return alert('Already occupied');
     board[ x ][ y ] = player;
     if (this.won(board)) return alert(this.won(board) !== 'draw' ? this.won(board) + ' Wins !!!': 'Draw !!');
