@@ -6,5 +6,23 @@
   "tags": [],
   "implicitDependencies": ["tttgame"],
   "// targets": "to see all targets run: nx show project tttgame-e2e --web",
-  "targets": {}
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "devServerTarget": "tttgame:serve:development",
+        "watch": false,
+        "baseUrl": "http://localhost:4200",
+        "cypressConfig": "apps/frontend-e2e/cypress.config.ts"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "tttgame:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
 }

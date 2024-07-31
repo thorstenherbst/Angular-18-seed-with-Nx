@@ -1,3 +1,5 @@
-.row {
-  display: flex;
+.container {
+  &__row{
+    display: flex;
+  }
 }

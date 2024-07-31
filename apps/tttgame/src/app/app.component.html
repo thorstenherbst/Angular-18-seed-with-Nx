@@ -1,14 +1,21 @@
-<ng-container *ngIf="board">
-<div class="container row" *ngFor="let row of board(); let x = index">
-    <div *ngFor="let column of row; let y = index">
-        <app-item
-                [xPoint]="x"
-                [yPoint]="y"
-                (cellClicked)="cellClicked($event)"
-                [state]="column"
-        >
-        </app-item>
-    </div>
+<div class="card">
+    <header class="card-header">
+        <h1 data-qa="headline">Welcome to {{title}}</h1>
+        <p>Start the Game by clicking one of the fields.</p>
+    </header>
+
+    <ng-container *ngIf="board">
+        <div class="container__row" *ngFor="let row of board(); let x = index">
+            <div *ngFor="let column of row; let y = index">
+                <app-item
+                        [xPoint]="x"
+                        [yPoint]="y"
+                        (cellClicked)="cellClicked($event)"
+                        [state]="column"
+                >
+                </app-item>
+            </div>
+        </div>
+    </ng-container>
+    <button (click)="newGame()"> new Game</button>
 </div>
-</ng-container>
-<button (click)="newGame()"> new Game </button>

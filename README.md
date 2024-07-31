@@ -1,4 +1,19 @@
-# Frontend
+# Angular 18 Seed with Nx Workspace Monorepo
+
+This is an Angular 18 Seed with Nx 19.
+I created this Seed to make developers work easier.
+Feel free to use it for your work.
+
+The seed contains an Nx Monorepo with 2 apps and 2 libraries:
+
+* frontend
+* tttgame (Tic Tac Toe)
+* e2e cypress library
+* api lib (star wars api)
+
+I am happy to see a shou tout (referal to my github profile).
+
+## Integration of Nx
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
@@ -12,7 +27,7 @@ comes with a LSP for Vim users.
 
 ## Start the application
 
-Run `npx nx serve frontend` to start the development server. Happy coding!
+Run `npx nx serve frontend` or `npm run start:frontend`  to start the development server. Happy coding!
 
 ## Build for production
 

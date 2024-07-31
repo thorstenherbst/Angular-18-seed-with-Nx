@@ -13,7 +13,7 @@ import { ItemComponent } from './item/item.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'tttgame';
+  title = 'Tic Tac Toe';
   public board: Signal<Board | undefined> = signal(undefined);
   service: ApiService = inject(ApiService);
   cellClicked(ev: {x: number, y: number}): void {
