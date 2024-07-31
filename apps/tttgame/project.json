@@ -23,6 +23,9 @@
           }
         ],
         "styles": ["apps/tttgame/src/styles.scss"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["./node_modules", "styles"]
+        },
         "scripts": []
       },
       "configurations": {

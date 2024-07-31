@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@frontend/api": ["libs/api/src/index.ts"],
-      "@frontend/e2e": ["libs/e2e/src/index.ts"]
+      "@frontend/e2e": ["libs/e2e/src/index.ts"],
+      "@styles": ["styles"]
     }
   },
   "exclude": ["node_modules", "tmp"]

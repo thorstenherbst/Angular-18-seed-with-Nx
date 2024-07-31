@@ -1,3 +1,27 @@
-<app-nx-welcome></app-nx-welcome> <router-outlet></router-outlet>
+<!--<app-nx-welcome></app-nx-welcome>-->
+<router-outlet></router-outlet>
 <!-- * Uncomment this to see weather the ApiService works -->
-<!--{{ people() | json }}-->
+@if(people().length) {
+    <ng-template
+        [ngTemplateOutlet]="loadingEnd"
+        [ngTemplateOutletContext]="{$implicit: people(), theader: tableHeader}">
+    </ng-template>
+}
+@else {
+    <ng-template [ngTemplateOutlet]="loading"></ng-template>
+}
+<ng-template #loading>Loading....</ng-template>
+
+<ng-template #loadingEnd let-items let-head="theader">
+    <div class="container">
+    <table class="table">
+        <th scope="col" *ngFor="let colHead of head">{{colHead | uppercase}}</th>
+        <tbody>
+        <tr *ngFor="let row of items">
+            <td class="table-dark" scope="col" *ngFor="let col of getColumns(row); let i = index">{{row[col]}}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+
+</ng-template>
