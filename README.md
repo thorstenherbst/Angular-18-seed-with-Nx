@@ -13,6 +13,16 @@ The seed contains an Nx Monorepo with 2 apps and 2 libraries:
 
 I am happy to see a shout out (referal to my github profile).
 
+## Next Steps:
+
+* include nx module federation and a shell app
+* dockerize the whole application
+  * build several docker containers / services to split up the app
+    * extract the MockBackendService from the TicTacToe Game into a seperate node.js server container
+  * extract the star wars api service into a separate middleware container
+  * create an own container for the app
+
+
 ## Integration of Nx
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
