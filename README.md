@@ -11,7 +11,7 @@ The seed contains an Nx Monorepo with 2 apps and 2 libraries:
 * e2e cypress library
 * api lib (star wars api)
 
-I am happy to see a shou tout (referal to my github profile).
+I am happy to see a shout out (referal to my github profile).
 
 ## Integration of Nx
 
