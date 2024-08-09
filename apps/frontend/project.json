@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/frontend",
@@ -21,7 +21,10 @@
         "stylePreprocessorOptions": {
           "includePaths": ["./node_modules", "styles"]
         },
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/frontend/webpack.config.ts"
+        }
       },
       "configurations": {
         "production": {
@@ -43,7 +46,10 @@
               "replace": "environments/environment.ts",
               "with": "environments/environment.prod.ts"
             }
-          ]
+          ],
+          "customWebpackConfig": {
+            "path": "apps/frontend/webpack.prod.config.ts"
+          }
         },
         "development": {
           "buildOptimizer": false,
@@ -63,7 +69,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "frontend:build:production"
@@ -72,7 +78,10 @@
           "buildTarget": "frontend:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "publicHost": "http://localhost:4200"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -92,10 +101,18 @@
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
       "options": {
         "buildTarget": "frontend:build",
-        "port": 4200,
-        "spa": true
+        "watch": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "frontend:build:development"
+        },
+        "production": {
+          "buildTarget": "frontend:build:production"
+        }
       }
     }
   }

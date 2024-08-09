@@ -1,9 +1,9 @@
 import { Component, computed, effect, inject, OnInit, Signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { ApiService } from '@frontend/api';
 import { AsyncPipe, CommonModule, NgForOf, NgIf } from '@angular/common';
 import { PeopleDTO } from '../../../../libs/api/src/lib/people';
+import { NxWelcomeComponent } from './remote-entry/nx-welcome.component';
 
 @Component({
   standalone: true,

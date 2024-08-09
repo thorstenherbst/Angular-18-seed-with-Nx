@@ -17,7 +17,9 @@
     "paths": {
       "@frontend/api": ["libs/api/src/index.ts"],
       "@frontend/e2e": ["libs/e2e/src/index.ts"],
-      "@styles": ["styles"]
+      "@styles": ["styles"],
+      "frontend/Routes": ["apps/frontend/src/app/remote-entry/entry.routes.ts"],
+      "tttgame/Routes": ["apps/tttgame/src/app/remote-entry/entry.routes.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
